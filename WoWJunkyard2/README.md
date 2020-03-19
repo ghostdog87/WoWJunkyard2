@@ -1,15 +1,21 @@
 # WoWJunkyard2
 Course project for Softuni - ASP.NET Core and Vue JS 2020
 
-## Type - WoW Information Site
+## WoW Information Site
 
 ## Description
 
-This is Web page that gives information about characters in World of Warcraft.
-It provides the following  information: character items, character progress in mythic dungeons,
+This is a web page that gives information about characters in World of Warcraft and news related to the game.
+It provides the following  information: news, characters, character items, character progress in mythic dungeons,
 detailed information about characters. 
-Shows the details for each character item.
 Search bar to find characters.
+Shows the details for each character item.
+
+
+## Tools and Libraries used in the project:
+	- MSSQL server
+	- Mediatr library by Jimmy Bogard to implement CQRS (Mediator pattern)
+	- FluentValidation library to control client-side validations (similar to DataAnnotations attributes).
 
 ## Profiles
 ### Admin:
@@ -20,6 +26,9 @@ Search bar to find characters.
 	password: user
 
 ## Entities
+
+### News
+  - TBA
 
 ### User
   - Id (string)
