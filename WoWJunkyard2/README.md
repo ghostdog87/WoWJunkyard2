@@ -1,15 +1,16 @@
 # WoWJunkyard2
 Course project for Softuni - ASP.NET Core and Vue JS 2020
 
-## Type - WoW Information Site
+## WoW Information Site
 
 ## Description
 
-This is Web page that gives information about characters in World of Warcraft and news related to the game.
-It provides the following  information: character items, character progress in mythic dungeons,
+This is a web page that gives information about characters in World of Warcraft and news related to the game.
+It provides the following  information: news, characters, character items, character progress in mythic dungeons,
 detailed information about characters. 
-Shows the details for each character item.
 Search bar to find characters.
+Shows the details for each character item.
+
 
 ## Tools and Libraries used in the project:
 	- MSSQL server
