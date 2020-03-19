@@ -26,6 +26,9 @@ Search bar to find characters.
 
 ## Entities
 
+### News
+  - TBA
+
 ### User
   - Id (string)
   - Username (string)
