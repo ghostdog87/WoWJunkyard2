@@ -12,6 +12,10 @@ using Application;
 using Persistence;
 using FluentValidation.AspNetCore;
 using API.Middleware;
+using Application.User;
+using Application.Interfaces;
+using Infrastructure.Security;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace API
 {
@@ -37,7 +41,10 @@ namespace API
             identityBuilder.AddEntityFrameworkStores<DataContext>();
             identityBuilder.AddSignInManager<SignInManager<WoWUser>>();
 
-            services.AddAuthentication();
+            services.AddScoped<IJwtGenerator,JwtGenerator>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer();
             services.AddMediatR(typeof(Login.Handler).Assembly);
 
             services.AddMvc()

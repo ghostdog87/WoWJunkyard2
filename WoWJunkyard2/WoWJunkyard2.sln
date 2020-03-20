@@ -11,26 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{988BF9AE-6781-414E-BB8C-68B6DC1C1044}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "client-app", "client-app\", "{86A8E0AE-8EA9-45EA-BB9A-36E04D072155}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_65273"
-		Debug.AspNetCompiler.PhysicalPath = "client-app\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_65273\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_65273"
-		Release.AspNetCompiler.PhysicalPath = "client-app\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_65273\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "65273"
-		SlnRelativePath = "client-app\"
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{F5FFAA25-CF66-45FD-B248-64EFF6C1497E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,10 +35,10 @@ Global
 		{988BF9AE-6781-414E-BB8C-68B6DC1C1044}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{988BF9AE-6781-414E-BB8C-68B6DC1C1044}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{988BF9AE-6781-414E-BB8C-68B6DC1C1044}.Release|Any CPU.Build.0 = Release|Any CPU
-		{86A8E0AE-8EA9-45EA-BB9A-36E04D072155}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{86A8E0AE-8EA9-45EA-BB9A-36E04D072155}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{86A8E0AE-8EA9-45EA-BB9A-36E04D072155}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{86A8E0AE-8EA9-45EA-BB9A-36E04D072155}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{F5FFAA25-CF66-45FD-B248-64EFF6C1497E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5FFAA25-CF66-45FD-B248-64EFF6C1497E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5FFAA25-CF66-45FD-B248-64EFF6C1497E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5FFAA25-CF66-45FD-B248-64EFF6C1497E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
