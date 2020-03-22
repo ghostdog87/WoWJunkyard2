@@ -6,11 +6,18 @@ using System.IdentityModel.Tokens.Jwt;
 using Application.Interfaces;
 using Domain;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Security
 {
     public class JwtGenerator : IJwtGenerator
     {
+        private readonly SymmetricSecurityKey _key;
+        public JwtGenerator(IConfiguration config)
+        {
+            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JWTkey"]));
+        }
+
         public string CreateToken(WoWUser user)
         {
             var claims = new List<Claim>{
@@ -18,8 +25,8 @@ namespace Infrastructure.Security
             };
 
             // generate signing credentials
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("super secret key"));
-            var credentials = new SigningCredentials(key,SecurityAlgorithms.HmacSha512Signature);
+            
+            var credentials = new SigningCredentials(_key,SecurityAlgorithms.HmacSha512Signature);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
