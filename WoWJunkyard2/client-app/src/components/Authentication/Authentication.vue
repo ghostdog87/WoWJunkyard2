@@ -3,41 +3,26 @@
     class="mx-auto"
     max-width="300"
     :dark="true"
-    tile
-  >
-        <div
-          v-for="(item, i) in items"
-          :key="i"
-          style="display:inline-block;"
-        >
-          <router-link :to="item.router" style="display:flex" class="btn btn-success" role="button">
-          <v-list-item-icon>
-            <v-icon v-text="item.icon"></v-icon>
-          </v-list-item-icon>          
-          <v-list-item-content>                  
-              <v-list-item-title v-text="item.text">     
-              </v-list-item-title>                     
-          </v-list-item-content>
-          </router-link>
-        </div>  
-
+    tile>
+    <AppLogin/> 
+    <AppRegister/>      
   </v-card>
 </template>
 
 <script>
-  export default {
-    name: 'authentication',
-    components: {
+import AppRegister from './Register.vue'
+import AppLogin from './Login.vue'
 
-    },
-    data: () => ({
-      item: 1,
-      items: [
-        { text: 'Login', icon: 'mdi-account', router: '/login'},
-        { text: 'Register', icon: 'mdi-account', router: '/register' },
-      ]
-    }) 
-  }
+export default {
+  name: 'authentication',
+  components: {
+    AppRegister,
+    AppLogin
+  },
+  data: () => ({
+
+  }) 
+}
 </script>
 
 <style scoped>
