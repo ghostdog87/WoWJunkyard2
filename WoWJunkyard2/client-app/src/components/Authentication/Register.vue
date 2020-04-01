@@ -67,7 +67,8 @@
         minLength: minLength(6),
         strongPassword(password) {
           return (
-            /[a-z]/.test(password) && // checks for upper character
+            /[a-z]/.test(password) && // checks for lower character
+            /[A-Z]/.test(password) && // checks for upper character
             /[0-9]/.test(password) && // checks for 0-9
             /\W|_/.test(password) // checks for special character
           );
@@ -136,6 +137,9 @@
           username: this.username,
           displayName: this.displayName,
           password: this.password,
+        })
+        .then(() => {
+          this.dialog = false;
         })
       }
     },

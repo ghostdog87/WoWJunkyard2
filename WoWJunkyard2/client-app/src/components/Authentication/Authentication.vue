@@ -4,20 +4,25 @@
     max-width="300"
     :dark="true"
     tile>
-    <AppLogin/> 
-    <AppRegister/>      
+    <AppLogin v-if="!loggedIn"/> 
+    <AppRegister v-if="!loggedIn"/>   
+    <p v-if="loggedIn">Welcome back!</p>   
   </v-card>
 </template>
 
 <script>
 import AppRegister from './Register.vue'
 import AppLogin from './Login.vue'
+import {authenticatedComputed} from '../../store/helpers.js'
 
 export default {
   name: 'authentication',
   components: {
     AppRegister,
     AppLogin
+  },
+  computed:{
+    ...authenticatedComputed
   },
   data: () => ({
 
