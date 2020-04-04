@@ -1,15 +1,23 @@
 <template>
-    <h1>news</h1>
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <div class="container">
+        <AppIndex />
+      </div>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
 </template>
 
 <script>
-  export default {
-    name: 'news',
-    components: {
+import AppIndex from "../components/News/index.vue";
 
-    },
-    data: () => ({
-      
-    }),
-  }
+export default {
+  name: "news",
+  components: {
+    AppIndex
+  },
+  data: () => ({})
+};
 </script>
