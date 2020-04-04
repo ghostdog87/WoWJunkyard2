@@ -31,11 +31,11 @@ export default {
 
   data() {
     return{
-      logo: logoSrc
+      logo: logoSrc,
     } 
   },
   components:{
     AppAuthentication
-  }
+  },
 };
 </script>

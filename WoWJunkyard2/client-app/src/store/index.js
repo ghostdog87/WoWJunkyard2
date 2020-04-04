@@ -15,6 +15,10 @@ export default new Vuex.Store({
       axios.defaults.headers.common['Authorization'] = `Bearer ${
         userData.token
       }`;
+    },
+    CLEAR_USER_DATA(){
+      localStorage.removeItem('user');
+      location.reload();
     }
   },
   actions: {
@@ -29,12 +33,24 @@ export default new Vuex.Store({
       .then(({data}) => {
         commit('SET_USER_DATA', data);
       });              
+    },
+    logout({commit}){
+      commit('CLEAR_USER_DATA');
     }
   },
   getters:{
     loggedIn(state){
       return !!state.user;
-    }
+    },
+    loggedInUser(state){
+      if(state.user !== null){
+        if(typeof state.user === 'object'){
+          return state.user.displayName;
+        }
+        return JSON.parse(state.user).displayName;
+      }
+      return "missing username";
+    },
   },
   modules: {
   }
