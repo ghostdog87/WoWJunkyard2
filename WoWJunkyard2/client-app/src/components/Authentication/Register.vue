@@ -4,11 +4,15 @@
         <v-btn color="succes" dark v-on="on">Register</v-btn>
       </template>
       <v-form @submit.prevent="register">
+        
         <v-card
         class="mx-auto"
         max-width="300"
         :dark="true"
         tile>
+        <ul>
+          <li v-for="(error,index) in responseErrors" :key="index" class="errors">{{error}}</li>
+        </ul>
         <v-text-field
           v-model="email"
           :error-messages="emailErrors"
@@ -82,6 +86,7 @@
       username: "",
       displayName: "",
       password: "",
+      responseErrors: null
     }),
     computed: {
       emailErrors() {
@@ -113,12 +118,6 @@
         !this.$v.password.strongPassword && errors.push('Strong passwords must have an upper letter, a number and a special character');
         return errors
       },
-      // submitErrors() {
-      //   const errors = []
-      //   if (!this.isSubmitValid) return errors
-      //   !this.isSubmitValid && errors.push('Enter valid data!');
-      //   return errors
-      // },
     },
     methods:{
       submit () {
@@ -141,12 +140,19 @@
         .then(() => {
           this.dialog = false;
         })
+        .catch((err) => {
+          this.responseErrors = err.response.data.errors;
+        })
       }
     },
   }
 </script>
 
 <style scoped>
+.errors{
+  color:red;
+  list-style-type: none;
+}
 .v-application{
   padding:5% !important;
 }
