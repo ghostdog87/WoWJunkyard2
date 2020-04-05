@@ -8,7 +8,8 @@ import './assets/css/bootstrap.min.css';
 import 'bootstrap';
 import axios from 'axios'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false,
+Vue.prototype.$localAPI = 'http://localhost:5000',
 
 new Vue({
   router,
@@ -20,13 +21,15 @@ new Vue({
       const userData = JSON.parse(userString);
       this.$store.commit('SET_USER_DATA',userData);
     }
+    // TODO: Properly intercepting errors and unauthorized access in future with axios interceptors
+
     axios.interceptors.response.use(
       response => response,
       error => {
         if(error.response.status === "401"){
           this.$store.dispatch("logout");
         }
-        return Promise.reject(error);
+        return Promise.reject(error.response);
       }
     );
   },

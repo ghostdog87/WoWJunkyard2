@@ -29,6 +29,9 @@ export default {
 </script>
 
 <style>
+.footer-section{
+  padding: 0px !important;
+}
 .v-application{
     background: none !important;
     background-image: url(`../img/zandalari-craft.jpg`) !important;

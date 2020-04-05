@@ -23,13 +23,13 @@ export default new Vuex.Store({
   },
   actions: {
     register({ commit },credentials){
-      return axios.post("http://localhost:5000/api/user/register", credentials)
+      return axios.post(this.$localAPI + "/api/user/register", credentials)
       .then(({data}) => {
         commit('SET_USER_DATA', data);
       });              
     },
     login({ commit },credentials){
-      return axios.post("http://localhost:5000/api/user/login", credentials)
+      return axios.post(this.$localAPI + "/api/user/login", credentials)
       .then(({data}) => {
         commit('SET_USER_DATA', data);
       });              
