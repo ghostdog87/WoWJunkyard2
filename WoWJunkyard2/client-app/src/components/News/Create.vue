@@ -7,21 +7,25 @@
           <div class="row">
             <div class="col-md-12">
               <v-form @submit.prevent="create" enctype="multipart/form-data">
-                <div
-                  asp-validation-summary="ModelOnly"
-                  class="font-weight-bold"
-                  style="color:#1dff39"
-                ></div>
-                <div class="form-group">
-                  <label asp-for="Title" class="col-form-label"></label>
-                  <input v-model="title" asp-for="Title" class="form-control" />
-                  <span asp-validation-for="Title" class="font-weight-bold" style="color:#1dff39"></span>
+                <div class="form-group" :class="{ 'form-group--error': $v.title.$error }">
+                  <label class="col-form-label text-light" for="Title">Title</label>
+                  <input
+                    v-model="title"
+                    name="Title"
+                    class="form-control"
+                    @input="$v.title.$touch()"
+                    @blur="$v.title.$touch()"
+                  />
+                  <p class="error" v-if="!$v.title.required">Title is required field.</p>
+                  <p class="error" v-if="!$v.title.minLength">Title must be at least 6 characters long.</p>
+                  <p class="error" v-if="!$v.title.maxLength">Title must be at most 200 characters long.</p>
                 </div>
                 <div class="form-group">
-                  <label asp-for="Description" class="col-form-label"></label>
+                  <label for="Description" class="col-form-label text-light">Description</label>
                   <editor
                     v-model="description"
                     api-key="no-api-key"
+                    name="Description"
                     :init="{
                         height: 500,
                         menubar: false,
@@ -36,22 +40,17 @@
                         bullist numlist outdent indent | removeformat | help'
                     }"
                   />
-                  <span
-                    asp-validation-for="Description"
-                    class="font-weight-bold"
-                    style="color:#1dff39"
-                  ></span>
                 </div>
                 <div class="form-group">
-                  <label asp-for="Image" class="col-form-label"></label>
+                  <label for="Image" class="col-form-label text-light">Image upload</label>
                   <input
                     type="file"
+                    name="Image"
                     id="file"
                     ref="file"
                     @change="handleFileUpload"
                     class="form-control"
                   />
-                  <span asp-validation-for="Image" class="font-weight-bold" style="color:#1dff39"></span>
                 </div>
                 <div class="form-group">
                   <input type="submit" id="submit-button" value="Create" class="btn btn-primary" />
@@ -69,9 +68,20 @@
 <script>
 import axios from "axios";
 import Editor from "@tinymce/tinymce-vue";
+import { validationMixin } from "vuelidate";
+import { required, maxLength, minLength } from "vuelidate/lib/validators";
 
 export default {
   name: "newsCreate",
+  mixins: [validationMixin],
+  validations: {
+    title: { required, minLength: minLength(6), maxLength: maxLength(200) },
+    description: {
+      required,
+      minLength: minLength(50),
+      maxLength: maxLength(200000)
+    }
+  },
   components: {
     editor: Editor
   },
@@ -80,7 +90,8 @@ export default {
     description: "",
     image: ""
   }),
-  computed: {},
+  computed: {
+  },
   methods: {
     handleFileUpload() {
       this.image = this.$refs.file.files[0];
@@ -91,10 +102,9 @@ export default {
       formData.append("Title", this.title);
       formData.append("Description", this.description);
       formData.append("Image", this.image);
-        
+
       axios
-        .post(this.$localAPI + "/api/news/", 
-        formData, {
+        .post(this.$localAPI + "/api/news/", formData, {
           headers: {
             "Content-Type": "multipart/form-data"
           }
@@ -113,4 +123,9 @@ export default {
 </script>
 
 <style scoped>
+p.error{
+  color:red !important;
+  background-color: transparent !important;
+  font-weight:bold !important;
+}
 </style>
