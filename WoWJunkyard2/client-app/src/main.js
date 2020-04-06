@@ -7,6 +7,7 @@ import './assets/css/style.css';
 import './assets/css/bootstrap.min.css';
 import 'bootstrap';
 import axios from 'axios'
+import Spinner from 'vue-simple-spinner'
 
 Vue.config.productionTip = false,
 Vue.prototype.$localAPI = 'http://localhost:5000',
@@ -15,6 +16,9 @@ new Vue({
   router,
   store,
   vuetify,
+  components: {
+    Spinner,
+  },
   created(){
     const userString = localStorage.getItem('user');
     if(userString){
