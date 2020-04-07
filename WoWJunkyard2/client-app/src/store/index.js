@@ -6,7 +6,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: null
+    user: null,
+    isLoading: false,
+    $localAPI: 'http://localhost:5000',
   },
   mutations: {
     SET_USER_DATA(state,userData){
@@ -19,24 +21,27 @@ export default new Vuex.Store({
     CLEAR_USER_DATA(){
       localStorage.removeItem('user');
       location.reload();
+    },
+    setLoading(state,value){
+      state.isLoading = value;
     }
   },
   actions: {
     register({ commit },credentials){
-      return axios.post(this.$localAPI + "/api/user/register", credentials)
+      return axios.post(this.state.$localAPI + "/api/user/register", credentials)
       .then(({data}) => {
         commit('SET_USER_DATA', data);
       });              
     },
     login({ commit },credentials){
-      return axios.post(this.$localAPI + "/api/user/login", credentials)
+      return axios.post(this.state.$localAPI + "/api/user/login", credentials)
       .then(({data}) => {
         commit('SET_USER_DATA', data);
       });              
     },
     logout({commit}){
       commit('CLEAR_USER_DATA');
-    }
+    },
   },
   getters:{
     loggedIn(state){
@@ -50,6 +55,9 @@ export default new Vuex.Store({
         return JSON.parse(state.user).displayName;
       }
       return "missing username";
+    },
+    isLoading(state){
+      return state.isLoading;
     },
   },
   modules: {

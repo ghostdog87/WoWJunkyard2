@@ -15,6 +15,7 @@
           >
             <div class="col-3">
               <img
+
                 :src="require(`@/assets/img/${item.image}`)"
                 style="max-width: 350px; width: 100%"
                 alt
@@ -48,7 +49,7 @@
 <script>
 import axios from "axios";
 import moment from "moment";
-import { authenticatedComputed } from "../../store/helpers.js";
+import { authenticatedComputed,baseURL } from "../../store/helpers.js";
 
 export default {
   name: "index",
@@ -57,7 +58,8 @@ export default {
     news: []
   }),
   computed: {
-    ...authenticatedComputed
+    ...authenticatedComputed,
+    ...baseURL
   },
   filters: {
     formatDate(value) {
@@ -68,6 +70,7 @@ export default {
   },
   created() {
     axios.get(this.$localAPI+ "/api/news").then(response => {
+      console.dir(response.data);
       this.news = response.data;
     });
   }

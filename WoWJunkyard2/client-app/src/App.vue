@@ -3,7 +3,14 @@
   <div id="app">
     
       <app-header/> 
-        <main><router-view/></main>
+        
+        <main>
+          <loading :active.sync="isLoading" 
+        :can-cancel="false" 
+        :is-full-page="fullPage"></loading>
+          <router-view/>
+          </main>
+        
       <app-footer/>
     
   </div>
@@ -13,22 +20,34 @@
 <script>
 import AppHeader from './components/Shared/Header';
 import AppFooter from './components/Shared/Footer';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+import { loadingComputed } from "../src/store/helpers.js";
+
 
 export default {
   name: 'App',
 
   components: {
     AppHeader,
-    AppFooter
+    AppFooter,
+    Loading
   },
 
+  computed:{
+    ...loadingComputed,
+  },
   data: () => ({
-    //
+    size: '100px',
+    fullPage: true,
   }),
 };
 </script>
 
 <style>
+main{
+  margin-bottom:20px !important;
+}
 .footer-section{
   padding: 0px !important;
 }

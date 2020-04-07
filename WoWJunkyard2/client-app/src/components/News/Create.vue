@@ -61,7 +61,10 @@
                     @blur="$v.image.$touch()"
                   />
                   <p class="error" v-if="!$v.image.required">Image is required.</p>
-                  <p class="error" v-if="!$v.image.image_type_validation">Image must be of types jpeg or png!</p>
+                  <p
+                    class="error"
+                    v-if="!$v.image.image_type_validation"
+                  >Image must be of types jpeg or png!</p>
                 </div>
                 <div class="form-group">
                   <input
@@ -72,6 +75,7 @@
                     class="btn btn-primary"
                   />
                 </div>
+                
               </v-form>
             </div>
           </div>
@@ -87,8 +91,10 @@ import axios from "axios";
 import Editor from "@tinymce/tinymce-vue";
 import { validationMixin } from "vuelidate";
 import { required, maxLength, minLength } from "vuelidate/lib/validators";
+import { baseURL } from "../../store/helpers.js";
 
-const image_type_validation = (value) => {
+
+const image_type_validation = value => {
   if (value["type"] === "image/jpeg" || value["type"] === "image/png") {
     return true;
   }
@@ -108,14 +114,17 @@ export default {
     image: { required, image_type_validation }
   },
   components: {
-    editor: Editor
+    editor: Editor,
+    
   },
   data: () => ({
     title: "",
     description: "",
     image: ""
   }),
-  computed: {},
+  computed: {
+    ...baseURL,
+  },
   methods: {
     handleFileUpload() {
       this.image = this.$refs.file.files[0];
@@ -134,19 +143,24 @@ export default {
       formData.append("Description", this.description);
       formData.append("Image", this.image);
 
-      axios
-        .post(this.$localAPI + "/api/news/", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data"
-          }
-        })
-        .then(() => {
-          //TODO: fix a bug that throws server error after redirecting to /news
-          this.$router.push({ name: "news" });
-        })
-        .catch(error => {
-          console.dir(error);
-        });
+      this.$store.commit('setLoading',true);
+
+        axios
+          .post(this.$localAPI + "/api/news/", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data"
+            }
+          })
+          .then(() => {
+            //TODO: fix a bug that throws server error after redirecting to /news   
+          })
+          .catch(error => {
+            console.dir(error);
+          })
+          .finally(() => {
+            this.$store.commit('setLoading',false);
+            this.$router.push({ name: "news" });
+          });
     }
   },
   filters: {},

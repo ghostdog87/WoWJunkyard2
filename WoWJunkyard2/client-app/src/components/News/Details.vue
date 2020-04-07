@@ -34,7 +34,7 @@
 <script>
 import axios from "axios";
 import moment from "moment";
-import { authenticatedComputed } from "../../store/helpers.js";
+import { authenticatedComputed,baseURL } from "../../store/helpers.js";
 
 export default {
   name: "newsDetails",
@@ -48,7 +48,8 @@ export default {
     imgURL: ""
   }),
   computed: {
-    ...authenticatedComputed
+    ...authenticatedComputed,
+    ...baseURL
   },
   methods: {
     deleteNews(id) {
