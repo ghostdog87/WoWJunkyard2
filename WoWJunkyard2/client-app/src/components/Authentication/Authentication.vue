@@ -12,8 +12,7 @@
 <script>
 import AppRegister from "./Register.vue";
 import AppLogin from "./Login.vue";
-import { authenticatedComputed } from "../../store/helpers.js";
-import {usernameComputed} from '../../store/helpers.js';
+import { authenticatedComputed,usernameComputed } from "../../store/Authentication/helpers";
 
 export default {
   name: "authentication",

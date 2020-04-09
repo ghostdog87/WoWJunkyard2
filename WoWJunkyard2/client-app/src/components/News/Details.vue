@@ -34,7 +34,7 @@
 <script>
 import axios from "axios";
 import moment from "moment";
-import { authenticatedComputed,baseURL } from "../../store/helpers.js";
+import { authenticatedComputed,baseURL } from "../../store/Authentication/helpers";
 
 export default {
   name: "newsDetails",
@@ -82,7 +82,7 @@ export default {
         this.description = response.data.description;
         this.postedOn = response.data.postedOn;
         this.image = response.data.image;
-        this.imgURL = `url(${require("@/assets/img/" + this.image)})`;
+        this.imgURL = `url(${'/img/' + this.image})`;
       });
   }
 };

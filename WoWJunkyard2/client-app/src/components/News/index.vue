@@ -9,14 +9,13 @@
           </div>
 
           <div
-            v-for="item in news"
+            v-for="item in allNews"
             :key="item.id"
             class="row background-gray-dark border-primary border mb-2"
           >
             <div class="col-3">
               <img
-
-                :src="require(`@/assets/img/${item.image}`)"
+                :src="'/img/' + item.image"
                 style="max-width: 350px; width: 100%"
                 alt
               />
@@ -35,7 +34,7 @@
           </div>
 
           <div
-            v-if="news.length == 0"
+            v-if="allNews == null"
             class="text-warning text-center"
             style="font-size: 2em"
           >No News</div>
@@ -47,19 +46,18 @@
 </template>
 
 <script>
-import axios from "axios";
 import moment from "moment";
-import { authenticatedComputed,baseURL } from "../../store/helpers.js";
+import { authenticatedComputed } from "../../store/Authentication/helpers";
+import { getAllNews } from "../../store/News/helpers";
 
 export default {
   name: "index",
   components: {},
   data: () => ({
-    news: []
   }),
   computed: {
     ...authenticatedComputed,
-    ...baseURL
+    ...getAllNews,
   },
   filters: {
     formatDate(value) {
@@ -68,11 +66,15 @@ export default {
       }
     }
   },
+  method: {
+  },
   created() {
-    axios.get(this.$localAPI+ "/api/news").then(response => {
-      console.dir(response.data);
-      this.news = response.data;
-    });
+    this.$store.dispatch('create')
+        .then(() => {
+        })
+        .catch((err) => {
+          this.responseErrors = err.response.data.errors;
+        })
   }
 };
 </script>

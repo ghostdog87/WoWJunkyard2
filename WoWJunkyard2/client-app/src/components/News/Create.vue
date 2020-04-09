@@ -91,7 +91,7 @@ import axios from "axios";
 import Editor from "@tinymce/tinymce-vue";
 import { validationMixin } from "vuelidate";
 import { required, maxLength, minLength } from "vuelidate/lib/validators";
-import { baseURL } from "../../store/helpers.js";
+import { baseURL } from "../../store/Authentication/helpers";
 
 
 const image_type_validation = value => {

@@ -22,7 +22,7 @@ import AppHeader from './components/Shared/Header';
 import AppFooter from './components/Shared/Footer';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
-import { loadingComputed } from "../src/store/helpers.js";
+import { loadingComputed } from "../src/store/Authentication/helpers";
 
 
 export default {
@@ -39,7 +39,7 @@ export default {
   },
   data: () => ({
     size: '100px',
-    fullPage: true,
+    fullPage: false,
   }),
 };
 </script>
