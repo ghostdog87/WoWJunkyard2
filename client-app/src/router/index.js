@@ -5,7 +5,7 @@ import Posts from '../views/Posts.vue'
 import AllPosts from '../components/Posts/AllPosts.vue'
 import PostDetails from '../components/Posts/Details.vue'
 import CreatePost from '../components/Posts/Create.vue'
-import UpdatePost from '../components/Posts/Update.vue'
+import EditPost from '../components/Posts/Edit.vue'
 import Characters from '../views/Characters.vue'
 
 Vue.use(VueRouter)
@@ -33,15 +33,15 @@ const routes = [
         component: CreatePost,
       },
       {
-        path: 'update',
-        name: 'UpdatePost',
-        component: UpdatePost,
-      },
-      {
         path: ':id',
         name: 'postDetails',
         component: PostDetails,
-      },    
+      }, 
+      {
+        path: 'edit/:id',
+        name: 'editPost',
+        component: EditPost,
+      },   
     ]
   },
   {

@@ -41,8 +41,14 @@
                     }"
             />
             <p class="error" v-if="!$v.description.required">Description is required field.</p>
-            <p class="error" v-if="!$v.description.minLength">Description must be at least 50 characters long.</p>
-            <p class="error" v-if="!$v.description.maxLength">Description must be at most 200000 characters long.</p>
+            <p
+              class="error"
+              v-if="!$v.description.minLength"
+            >Description must be at least 50 characters long.</p>
+            <p
+              class="error"
+              v-if="!$v.description.maxLength"
+            >Description must be at most 200000 characters long.</p>
           </div>
           <div class="form-group" :class="{ 'form-group--error': $v.image.$error }">
             <label for="Image" class="col-form-label text-light">Image upload</label>
@@ -68,7 +74,7 @@
               type="submit"
               id="submit-button"
               :disabled="$v.$invalid"
-              value="Create"
+              value="Update"
               class="btn btn-primary"
             />
           </div>
@@ -93,7 +99,7 @@ const image_type_validation = value => {
 };
 
 export default {
-  name: "createPost",
+  name: "editPost",
   mixins: [validationMixin],
   validations: {
     title: { required, minLength: minLength(6), maxLength: maxLength(80) },
@@ -102,7 +108,7 @@ export default {
       minLength: minLength(50),
       maxLength: maxLength(200000)
     },
-    image: { required, image_type_validation }
+    image: { required,image_type_validation}
   },
   components: {
     editor: Editor
@@ -132,10 +138,9 @@ export default {
       formData.append("Title", this.title);
       formData.append("Description", this.description);
       formData.append("Image", this.image);
-      formData.append("UserName", this.loggedInUserName);
 
       this.$store
-        .dispatch("createPost",formData)
+        .dispatch("editPost", {id: this.$route.params.id,formData: formData})
         .then(() => {
           this.$router.push({ name: "allPosts" });
         })
@@ -145,7 +150,15 @@ export default {
     }
   },
   filters: {},
-  created() {}
+  created() {
+    this.$store
+      .dispatch("postDetails", this.$route.params.id)
+      .then(response => {
+        this.title = response.data.title;
+        this.description = response.data.description;
+      })
+      .catch(() => {});
+  }
 };
 </script>
 

@@ -48,5 +48,30 @@ namespace API.Controllers
             }
             return await Mediator.Send(command);
         }
+
+        // Delete: Posts/5
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Unit>> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            return await Mediator.Send(new Delete.Command { Id = id });
+        }
+
+        // Update: post/edit/5
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Unit>> Edit(int? id, [FromForm] Edit.Command command)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            command.Id = id;
+            return await Mediator.Send(command);
+        }
     }
 }

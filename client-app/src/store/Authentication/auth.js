@@ -36,9 +36,9 @@ const auth = {
       commit('setLoading',true,{ root: true }); 
       return axios.post(this.state.$localAPI + "/api/user/login", credentials)
       .then(({data}) => {
-        commit('SET_USER_DATA', data);
-        
+        commit('SET_USER_DATA', data);        
         commit('setLoading',false,{ root: true });
+        return data;
       })
       .catch((err) => {
         commit('setLoading',false,{ root: true });
