@@ -13,30 +13,49 @@ Shows the details for each character item.
 
 
 ## Tools and Libraries used in the project:
+  ### Back-end
 	- MSSQL server
-	- Mediatr library by Jimmy Bogard to implement CQRS (Mediator pattern)
+	- Mediator by Jimmy Bogard to implement CQRS (Mediator pattern)
 	- FluentValidation library to control client-side validations (similar to DataAnnotations attributes).
+  - MongoDB to collect Blizzard API calls
+
+  ### Client-side
+  - Vue
+  - Vuetify and Bootstrap
+  - Vuex
+  - Vue router
+  - Jquery and other minor libraries based on Jquery
+  - WoWhead plugin to display tooltips
 
 ## Profiles
+
 ### Admin:
-	email: admin@admin.bg
-	password: admin
-### User:
-	email: user@user.bg
-	password: user
+	email: TBA
+	password: TBA
+
+### Users:
+	email: gosho@abv.bg
+	password: Ghostd0g_87
+
+  email: pesho@abv.bg
+	password: Ghostd0g_87
+
+  email: sasho@abv.bg
+	password: Ghostd0g_87
 
 ## Entities
 
-### News
-  - TBA
+### WoWUser (Inherites IdentityUser)
+  - DisplayName (string)
+  - Posts (List of Posts)
 
-### User
-  - Id (string)
-  - Username (string)
-  - Password (string)
-  - Email (string)
-  - WoWAccount (Account)
-  - Settings (Settings)
+### Posts
+  - Id (Integer)
+  - Title (string)
+  - Description (string)
+  - PostedOn (datetime)
+  - Image (string)
+  - User (WoWUser)
 
 ### Character
   - Id (Integer)
