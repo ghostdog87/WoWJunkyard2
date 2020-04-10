@@ -15,8 +15,8 @@ Shows the details for each character item.
 ## Tools and Libraries used in the project:
   ### Back-end
   - MSSQL server
-	- Mediator by Jimmy Bogard to implement CQRS (Mediator pattern)
-	- FluentValidation library to control client-side validations (similar to DataAnnotations attributes).
+  - Mediator by Jimmy Bogard to implement CQRS (Mediator pattern)
+  - FluentValidation library to control client-side validations (similar to DataAnnotations attributes).
   - MongoDB to collect Blizzard API calls
 
   ### Client-side
