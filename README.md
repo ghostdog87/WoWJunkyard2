@@ -37,10 +37,10 @@ Shows the details for each character item.
 	email: gosho@abv.bg
 	password: Ghostd0g_87
 
-  email: pesho@abv.bg
+	email: pesho@abv.bg
 	password: Ghostd0g_87
 
-  email: sasho@abv.bg
+	email: sasho@abv.bg
 	password: Ghostd0g_87
 
 ## Entities
