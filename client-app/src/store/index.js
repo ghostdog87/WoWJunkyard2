@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import auth from './Authentication/auth'
 import posts from './Posts/Posts'
+import characters from './Character/Characters'
 
 
 Vue.use(Vuex);
@@ -26,5 +27,6 @@ export default new Vuex.Store({
     modules: {
       auth,
       posts,
+      characters,
     }
 })

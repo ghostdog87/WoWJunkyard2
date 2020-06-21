@@ -11,6 +11,6 @@ namespace Application.WoWAPI.Models
         public string TokenType { get; set; }
 
         [JsonPropertyName("expires_in")]
-        public string ExpiresIn { get; set; }
+        public int ExpiresIn { get; set; }
     }
 }

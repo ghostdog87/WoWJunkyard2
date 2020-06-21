@@ -26,8 +26,8 @@ namespace Application.WoWAPI
                 client.BaseAddress = new Uri("https://EU.api.blizzard.com/");
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var apiString = "wow/character/" + realmToLower + "/" + characterNameToLower +
-                                "?locale=en_US&access_token=" + apiKey.AccessTokenKey;
+                var apiString = "profile/wow/character/" + realmToLower + "/" + characterNameToLower +
+                                "/equipment?namespace=profile-eu&locale=en_US&access_token=" + apiKey.AccessTokenKey;
 
                 var response = await client.GetAsync(apiString);
 

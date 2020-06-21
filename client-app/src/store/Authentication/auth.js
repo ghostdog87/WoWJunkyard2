@@ -26,11 +26,13 @@ const auth = {
       commit('setLoading',true,{ root: true }); 
       return axios.post(this.state.$localAPI + "/api/user/register", credentials)
       .then(({data}) => {
-        commit('SET_USER_DATA', data);        
+        commit('SET_USER_DATA', data); 
+        commit('setLoading',false,{ root: true });       
       })
-      .then(() => {
+      .catch((err) => {
         commit('setLoading',false,{ root: true });
-      });              
+        return err;
+      });            
     },
     login({ commit },credentials){
       commit('setLoading',true,{ root: true }); 
@@ -43,7 +45,7 @@ const auth = {
       .catch((err) => {
         commit('setLoading',false,{ root: true });
         return err;
-      })          
+      });         
     },
     logout({commit}){
       commit('CLEAR_USER_DATA');

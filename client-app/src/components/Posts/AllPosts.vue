@@ -53,7 +53,7 @@ export default {
       }
     }
   },
-  method: {},
+  methods: {},
   created() {
     this.$store
       .dispatch("allPosts")
