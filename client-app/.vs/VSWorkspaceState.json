@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\public",
+    "\\public\\js",
+    "\\src",
+    "\\src\\assets",
+    "\\src\\mixins",
+    "\\src\\plugins",
+    "\\src\\store",
+    "\\src\\utilities",
+    "\\src\\views"
+  ],
+  "PreviewInSolutionExplorer": false
+}
