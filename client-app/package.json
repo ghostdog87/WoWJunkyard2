@@ -10,12 +10,12 @@
   "dependencies": {
     "@tinymce/tinymce-vue": "^3.2.0",
     "axios": "^0.24.0",
-    "bootstrap": "^4.4.1",
+    "bootstrap": "^4.6.1",
     "core-js": "^3.6.4",
     "jquery": "^3.6.0",
     "moment": "^2.29.1",
     "popper.js": "^1.16.1",
-    "vue": "^2.6.11",
+    "vue": "^2.7.0",
     "vue-loading-overlay": "^3.3.2",
     "vue-router": "^3.1.5",
     "vue-spinner": "^1.0.3",
@@ -36,7 +36,7 @@
     "sass": "^1.43.5",
     "sass-loader": "^8.0.0",
     "vue-cli-plugin-vuetify": "^2.4.4",
-    "vue-template-compiler": "^2.6.11",
+    "vue-template-compiler": "^2.7.0",
     "vuetify-loader": "^1.7.3"
   },
   "eslintConfig": {
